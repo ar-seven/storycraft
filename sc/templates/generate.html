@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Story Generator - Create Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/generate.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <section class="welcome-section">
+            <h1>Hey Aravind! 👋</h1>
+            <p>Ready to create something magical? Let's craft an amazing story that will spark young imaginations and bring smiles to little faces. What adventure shall we create today?</p>
+        </section>
+
+        <div class="generation-container">
+            <div class="inspiration-box">
+                <h3>Story Inspiration</h3>
+                <p style="color: aliceblue;">Need some ideas? Here are some magical prompts to get you started:</p>
+                <div class="prompt-suggestions">
+                  <span class="prompt-tag" onclick="setPrompt(this.textContent)">A friendly dragon who can't breathe fire 🐉</span>
+                  <span class="prompt-tag" onclick="setPrompt(this.textContent)">The smallest superhero in the world 🦸‍♂️</span>
+                  <span class="prompt-tag" onclick="setPrompt(this.textContent)">A tree that grows candy 🍭</span>
+                  <span class="prompt-tag" onclick="setPrompt(this.textContent)">The musical cloud orchestra ☁️</span>
+                  <span class="prompt-tag" onclick="setPrompt(this.textContent)">Time-traveling teddy bear 🧸</span>
+              </div>
+            </div>
+
+            <div class="story-input">
+                <div class='landing__tryitout-main section__padding' id='try'></div>
+                <div class="landing__tryitout">
+
+                  <form class="landing__tryitout-Form" onSubmit={handleSubmit} action="story.html">
+                    <div class="landing__tryitout-Form_perspective">
+                      <label>
+                        <input
+                        class='landing__tryitout-Form_perspective-first'
+                          type="radio"
+                          value="first"
+                          name="pres"
+                          checked
+                        />
+                        First Person
+                      </label>
+                      <label>
+                        <input
+                        class='landing__tryitout-Form_perspective-first'
+                          type="radio"
+                          value="third"
+                          name="pres"
+                        />
+                        Third Person
+                      </label>
+                    </div>
+                    <label class="landing__tryitout-Form_text-form-label">
+                        <div class="landing__tryitout-heading">
+                            <h1>Let's Build Your Story</h1>
+                         </div>
+                      <input
+                        type="text"
+                        class="landing__tryitout-Form_text-input"
+                      />
+                    </label>
+          
+                    <h1>OR</h1>
+          
+                    <label class="landing__tryitout-Form_image-form-label">
+                      Upload Image
+                      <input
+                        type="file"
+                        accept="image/*"  
+                        class="landing__tryitout-Form_file-input"
+                      />
+                    </label>
+          
+                    <button type="submit" class="landing__tryitout-Form_submit-button">
+                      <h4>SEND TO STORY CRAFT</h4>
+                    </button>
+                  </form>
+          
+                </div>
+              </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>Age-Appropriate Content</h4>
+                    <p>Stories are tailored to be engaging and suitable for young readers</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Educational Value</h4>
+                    <p>Each story contains subtle learning elements and moral lessons</p>
+                </div>
+                <div class="feature-card">
+                    <h4>Interactive Elements</h4>
+                    <p>Stories can include questions and discussion points for engagement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      function setPrompt(text) {
+          document.querySelector('.landing__tryitout-Form_text-input').value = text;
+      }
+      </script>
+</body>
+</html>

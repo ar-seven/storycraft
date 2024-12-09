@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Story Generator - Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-family: 'Montserrat', sans-serif;
+            --gradient-bg: linear-gradient(90deg, rgba(72,0,107,1) 23%, rgba(34,1,65,1) 66%);
+            --gradient-text: linear-gradient(269deg, #C0B7E8 -3.72%, #8176AF 82.17%);
+            --gradient-bar: radial-gradient(2900.76% 50.13% at 50% 53.89%, rgba(58, 52, 86, 0.95) 0%, #211E2E 100%);
+            --color-bg: #302C42;
+            --color-footer: radial-gradient(50% 50% at 50% 50%, #403A5F 0%, #211E2E 100%);
+            --color-btn: linear-gradient(90deg, #8176AF 0%, #C0B7E8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background: var(--color-bg);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #C0B7E8;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .story-card {
+            background: var(--gradient-bar);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+        }
+
+        .story-title {
+            color: #C0B7E8;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .story-link {
+            display: block;
+            text-decoration: none;
+            padding: 0.8rem;
+            background: var(--color-btn);
+            color: var(--color-bg);
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        .story-link:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .stories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>AI Generated Stories</h1>
+        <p>Explore our collection of AI-generated stories</p>
+    </header>
+
+    <div class="stories-grid">
+        <!-- Story Card 1 -->
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <!-- Story Card 2 -->
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <!-- Story Card 3 -->
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+
+        <div class="story-card">
+            <img src="assets/31.png" alt="The Little Girl Astronaut" class="story-image">
+            <div class="story-content">
+                <h2 class="story-title">The Little Girl Astronaut</h2>
+                <a href="story.html" class="story-link">Read Story</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

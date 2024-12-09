@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Story Generator - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="{% static 'css/login.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="image-section">
+            <div class="image-content">
+                <h2>Welcome to AI Story Generator</h2>
+                <p>Embark on a journey through countless AI-generated stories. Your imagination is the only limit.</p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="forms-container">
+                <!-- Login Form -->
+                <form class="form" id="loginForm" action="/register/login/" method="post">
+                    {% csrf_token %}
+                    <div class="form-header">
+                        <h2>Welcome Back</h2>
+                        <p>Please sign in to continue</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="auth-btn">Sign In</button>
+
+                    <div class="switch-form">
+                        Don't have an account?<a href="#" onclick="switchForm('signup')">Sign Up</a>
+                    </div>
+                            <!-- Messages Section -->
+                        {% if messages %}
+                        <div class="messages-container">
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <!-- End of Messages Section -->
+                </form>
+
+                <!-- Signup Form -->
+                <!-- ... existing code ... -->
+                <form class="form active" id="signupForm" method="POST" action="/register/signup/">
+                    {% csrf_token %}
+                    <div class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Start your journey with us</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" placeholder="Enter your username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Create a password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+
+                    <button type="submit" class="auth-btn">Sign Up</button>
+                    <!-- ... existing code ... -->
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        function switchForm(formType) {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            
+            if (formType === 'signup') {
+                loginForm.classList.remove('active');
+                signupForm.classList.add('active');
+            } else {
+                signupForm.classList.remove('active');
+                loginForm.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
