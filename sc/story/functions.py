@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from TTS.utils.manage import ModelManager
 from TTS.utils.synthesizer import Synthesizer
 
-from .. import models
+from . import models
 
 
 def followup_question_storage():
@@ -61,7 +61,7 @@ def generate_story(prompt: str, prespective: str = "third"):
     title_match = re.search(r'"Title": "([^"]+)"', json_string)
     prompt_match = re.search(r'"Prompt": "([^"]+)"', json_string)
     story_match = re.search(r'"Story": "([^"]+)"', json_string)
-    print(json_string)
+    # print(json_string)
 
     if title_match and prompt_match and story_match:
         title = title_match.group(1)
@@ -76,7 +76,8 @@ def generate_image_stability(prompt: str):
     load_dotenv()
     HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
     API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
-    headers = {"Authorization": HUGGINGFACE_API_KEY}
+    print(HUGGINGFACE_API_KEY)
+    headers = {"Authorization": f"Bearer {HUGGINGFACE_API_KEY}"}
 
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
@@ -87,7 +88,6 @@ def generate_image_stability(prompt: str):
             "inputs": prompt,
         }
     )
-
     image_base64 = base64.b64encode(image_bytes).decode()
 
     return image_base64
@@ -203,7 +203,7 @@ def generate_voice(story: str, file_name: str):
 
     outputs = syn.tts(story)
     print("audio/" + file_name + ".wav")
-    syn.save_wav(outputs, "Story_Craft/public/assets/audio/" + file_name + ".wav")
+    syn.save_wav(outputs, file_name)
     return "True"
 
 

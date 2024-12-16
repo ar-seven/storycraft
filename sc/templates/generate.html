@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <section class="welcome-section">
-            <h1>Hey Aravind! 👋</h1>
+            <h1>Hey {{ user.first_name }}! 👋</h1>
             <p>Ready to create something magical? Let's craft an amazing story that will spark young imaginations and bring smiles to little faces. What adventure shall we create today?</p>
         </section>
 
@@ -32,7 +32,8 @@
                 <div class='landing__tryitout-main section__padding' id='try'></div>
                 <div class="landing__tryitout">
 
-                  <form class="landing__tryitout-Form" onSubmit={handleSubmit} action="story.html">
+                  <form class="landing__tryitout-Form" onSubmit={handleSubmit} action="/generate/" method="post">
+                    {% csrf_token %}
                     <div class="landing__tryitout-Form_perspective">
                       <label>
                         <input
@@ -61,17 +62,7 @@
                       <input
                         type="text"
                         class="landing__tryitout-Form_text-input"
-                      />
-                    </label>
-          
-                    <h1>OR</h1>
-          
-                    <label class="landing__tryitout-Form_image-form-label">
-                      Upload Image
-                      <input
-                        type="file"
-                        accept="image/*"  
-                        class="landing__tryitout-Form_file-input"
+                        name="prompt"
                       />
                     </label>
           
@@ -98,6 +89,8 @@
                     <p>Stories can include questions and discussion points for engagement</p>
                 </div>
             </div>
+
+            <a href="/" style="display: block; text-align: center; margin-top: 20px;"><button class="landing__tryitout-Form_submit-button">Go to Home</button></a>
         </div>
     </div>
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'css/story.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="gradient_bg">
+        <div class='story__header'  id='head'>
+            <div class="story__header-Heading">
+              <a href="/"><h1 class='gradient__text'>STORY CRAFT</h1></a>
+            </div>
+            <div class="story__header-Title">
+              <h1>{{ title }}</h1>
+            </div>
+            <div class="story__header-sign">
+              <a href="/generate">
+              <button type='button'>New Story</button>
+              </a>
+            </div>
+            <div class="story__header-Title2">
+              <h1>{{ title }}</h1>
+            </div>
+        </div>  
+      </div>
+
+
+      <div class='story__generate section__padding'>
+        <div class='story__generate-block1'>   
+           <div class="story__generate-image">
+               <img src="{% static 'story_images/' %}{{story_id}}.png" alt="cover" />
+           </div>
+           <div class="story__generate-content">
+               <div class="story__generate-content_story">
+                <p>{{ story_content|safe }}</p>
+               </div>            
+           </div>
+       </div>
+           <div class="story__generate-controls">
+               <div class='story__generate-controls_audio'>
+                   <audio controls>
+                       <source src="{% static 'story_audio/' %}{{story_id}}.wav" type="audio/wav" />
+                       Your browser does not support the audio element.
+                   </audio>
+               </div>
+               <div class="story__generate-controls_ask">
+                   <div class='QA'></div>
+                   <div class="ask_loading">
+                   <input type="text" 
+                   placeholder='Ask a Question' />
+                   </div>
+               </div>
+   
+           </div>
+   
+       </div>
+
+    
+</body>
+</html>

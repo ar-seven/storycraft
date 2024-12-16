@@ -88,6 +88,18 @@
                     </div>
 
                     <button type="submit" class="auth-btn">Sign Up</button>
+
+                    <div class="switch-form">
+                        Don't have an account?<a href="#" onclick="switchForm('login')">Log in</a>
+                    </div>
+
+                    {% if messages %}
+                    <div class="messages-container">
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     <!-- ... existing code ... -->
                 </form>
             </div>

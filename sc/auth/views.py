@@ -65,7 +65,7 @@ def login(request):
                 user = authenticate(request, username=user.username, password=password)
                 if user is not None:
                     auth_login(request, user)
-                    messages.success(request, 'Login successful!')
+                    # messages.success(request, 'Login successful!')
                     return redirect('home')  # Replace 'home' with the name of your homepage URL
                 else:
                     messages.error(request, 'Invalid credentials!')
@@ -82,5 +82,5 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    messages.success(request, 'Logged out successfully!')
+    # messages.success(request, 'Logged out successfully!')
     return redirect('login')

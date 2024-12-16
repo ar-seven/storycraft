@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Story Generator - Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-family: 'Montserrat', sans-serif;
+            --gradient-bg: linear-gradient(90deg, rgba(72,0,107,1) 23%, rgba(34,1,65,1) 66%);
+            --gradient-text: linear-gradient(269deg, #C0B7E8 -3.72%, #8176AF 82.17%);
+            --gradient-bar: radial-gradient(2900.76% 50.13% at 50% 53.89%, rgba(58, 52, 86, 0.95) 0%, #211E2E 100%);
+            --color-bg: #302C42;
+            --color-footer: radial-gradient(50% 50% at 50% 50%, #403A5F 0%, #211E2E 100%);
+            --color-btn: linear-gradient(90deg, #8176AF 0%, #C0B7E8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background: var(--color-bg);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #C0B7E8;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .story-card {
+            background: var(--gradient-bar);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .story-title {
+            color: #C0B7E8;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            height: 2.8em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .story-author {
+            color: #8176AF;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .story-link {
+            margin-top: auto;
+            display: block;
+            text-decoration: none;
+            padding: 0.8rem;
+            background: var(--color-btn);
+            color: var(--color-bg);
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        .story-link:hover {
+            opacity: 0.9;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        input[type="text"] {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            margin-right: 0.5rem;
+            width: 300px; /* Adjust width as needed */
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--color-btn);
+            color: var(--color-bg);
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #C0B7E8; /* Change to a lighter color on hover */
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>AI Generated Stories</h1>
+        <p>Explore our collection of AI-generated stories</p>
+        <form method="post" action="/stories/">
+            {% csrf_token %}
+            <input type="text" name="query" placeholder="Search stories..." required>
+            <button type="submit">Search</button>
+            <button type="button" onclick="location.href='/stories/'" style="margin-left: 10px;">Reset</button>
+            <button type="button" onclick="location.href='/'" style="margin-left: 10px;">Go to Home</button>
+        </form>
+    </header>
+
+
+     <div class="stories-grid">
+    {% for story in stories %}
+    <div class="story-card">
+        <img src="/static/story_images/{{story.story_id}}.png" alt="{{story.title}}" class="story-image">
+        <div class="story-content">
+            <h2 class="story-title">{{story.title}}</h2>
+            <p class="story-author">By: {{story.user.username}}</p>
+            <a href="/story/{{story.story_id}}" class="story-link">Read Story</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>
