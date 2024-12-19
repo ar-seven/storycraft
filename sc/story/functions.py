@@ -13,20 +13,6 @@ from TTS.utils.synthesizer import Synthesizer
 from . import models
 
 
-def followup_question_storage():
-    session_file = "./storage/session.csv"
-    # create storage if not exists
-    if not os.path.exists("./storage"):
-        os.makedirs("./storage")
-
-    if not os.path.exists(session_file):
-        df = pd.DataFrame(
-            {"id": [], "sess_id": [], "story_id": [], "role": [], "content": []}
-        )
-        df.to_csv(session_file, index=False)
-
-    session_df = pd.read_csv(session_file)
-    return session_df
 
 
 def generate_story(prompt: str, prespective: str = "third"):

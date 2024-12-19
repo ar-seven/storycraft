@@ -46,18 +46,63 @@
                        Your browser does not support the audio element.
                    </audio>
                </div>
+
                <div class="story__generate-controls_ask">
-                   <div class='QA'></div>
-                   <div class="ask_loading">
-                   <input type="text" 
-                   placeholder='Ask a Question' />
-                   </div>
-               </div>
+                <div class='QA' id="chat-container"></div>
+                <div class="ask_loading">
+                    <input type="text" 
+                           placeholder='Ask a Question' 
+                           class="qa-input" />
+                    <button type="button" class="qa-submit-button" onclick="handleQASubmit()">Ask</button>
+                </div>
+            </div>
+
+               
    
            </div>
    
        </div>
 
+
+
     
 </body>
+
+<script>
+    function handleQASubmit() {
+
+        const questionInput = document.querySelector('.qa-input');
+        const question = questionInput.value;
+        const storyTitle = "{{ title }}"; 
+        const storyContent = "{{ story_content|safe }}"; 
+
+        appendMessage(question, 'user');
+     
+        fetch('/ask-gpt/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({ title: storyTitle, content: storyContent, question: question })
+        })
+        .then(response => response.json())
+        .then(data => {
+            appendMessage(data.answer, 'gpt'); 
+        })
+        .catch(error => console.error('Error:', error));
+
+
+        questionInput.value = '';
+    }
+
+    function appendMessage(content, sender) {
+        const chatContainer = document.getElementById('chat-container');
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender === 'user' ? 'user-message' : 'gpt-message');
+        messageDiv.textContent = content;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight; 
+    }
+</script>
 </html>

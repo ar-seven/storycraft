@@ -21,7 +21,6 @@
 
         <div class="form-section">
             <div class="forms-container">
-                <!-- Login Form -->
                 <form class="form active" id="loginForm" action="/register/login/" method="post">
                     {% csrf_token %}
                     <div class="form-header">
@@ -44,7 +43,6 @@
                     <div class="switch-form">
                         Don't have an account?<a href="#" onclick="switchForm('signup')">Sign Up</a>
                     </div>
-                            <!-- Messages Section -->
                         {% if messages %}
                         <div class="messages-container">
                             {% for message in messages %}
@@ -52,11 +50,7 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                    <!-- End of Messages Section -->
                 </form>
-
-                <!-- Signup Form -->
-                <!-- ... existing code ... -->
                 <form class="form" id="signupForm" method="POST" action="/register/signup/">
                     {% csrf_token %}
                     <div class="form-header">
@@ -90,7 +84,8 @@
                     </div>
 
                     <button type="submit" class="auth-btn">Sign Up</button>
-                    <!-- ... existing code ... -->
+
+                    <button type="submit" class="auth-btn">Sign Up</button>
                 </form>
             </div>
         </div>

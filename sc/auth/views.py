@@ -10,7 +10,7 @@ def signup(request):
         password = request.POST['password']
         confirm_password = request.POST['confirm_password'] 
         name = request.POST['name'] 
-        # Basic validation
+
         if not username or not email or not password or not confirm_password:
             messages.error(request, 'All fields are required!')
             return redirect('signup')
@@ -28,7 +28,7 @@ def signup(request):
             return redirect('signup')
 
         try:
-            # Create a new user
+
             user = User.objects.create_user(
                 username=username,
                 email=email,
@@ -37,36 +37,33 @@ def signup(request):
             )
             user.save()
 
-            # Automatically log the user in
+
             auth_login(request, user)
             messages.success(request, 'Registration successful! Welcome aboard!')
-            return redirect('home')  # Replace 'home' with the name of your homepage URL
+            return redirect('home')  
 
         except Exception as e:
             messages.error(request, f'An unexpected error occurred: {str(e)}')
             return redirect('signup')
 
-    return render(request, 'signup.html')  # Ensure this template exists and is configured
-
+    return render(request, 'signup.html') 
 def login(request):
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
         print(email,password)
-        # Validate inputs
         if not email or not password:
             messages.error(request, 'Both email and password are required!')
             return redirect('login')
 
         try:
-            # Authenticate using the username (retrieved by email)
             user = User.objects.filter(email=email).first()
             if user:
                 user = authenticate(request, username=user.username, password=password)
                 if user is not None:
                     auth_login(request, user)
                     # messages.success(request, 'Login successful!')
-                    return redirect('home')  # Replace 'home' with the name of your homepage URL
+                    return redirect('home')  
                 else:
                     messages.error(request, 'Invalid credentials!')
             else:
@@ -78,7 +75,7 @@ def login(request):
 
         return redirect('login')
 
-    return render(request, 'login.html')  # Ensure this template exists and is configured
+    return render(request, 'login.html')  
 
 def logout(request):
     auth_logout(request)
